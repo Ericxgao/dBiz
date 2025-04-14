@@ -47,21 +47,20 @@ struct sineOsc {
 	void process(float deltaTime, T syncValue) {
 		// Advance phase
 		T deltaPhase = simd::clamp(freq * deltaTime, 1e-6f, 0.35f);
+		
+		// Apply direction (only multiply if soft is true)
 		if (soft) {
-			// Reverse direction
 			deltaPhase *= syncDirection;
-		}
-		else {
-			// Reset back to forward
+		} else {
 			syncDirection = 1.f;
 		}
-		phase += deltaPhase;
-		// Wrap phase
+		
+		// Update phase and wrap in one operation
+		phase = phase + deltaPhase;
 		phase -= simd::floor(phase);
 
-		// Sin
-		sinValue = sin(phase);
-		sinValue += sinMinBlep.process();
+		// Calculate sine and update value
+		sinValue = sin(phase) + sinMinBlep.process();
 	}
 
 	T sin(T phase) {
@@ -149,11 +148,11 @@ struct DAOSC : Module {
 	float blinkPhase = 0.0;
 
 	sineOsc <8, 8, float_4> osc_a[4]={};
-	sineOsc <8, 8, float_4> a_harmonic[10]={};
-	sineOsc <8, 8, float_4> a_harmonicq[10] = {};
+	sineOsc <8, 8, float_4> a_harmonic[6]={};
+	sineOsc <8, 8, float_4> a_harmonicq[6] = {};
 	sineOsc <8, 8, float_4> osc_b[4]={};
-	sineOsc <8, 8, float_4> b_harmonic[10] = {};
-	sineOsc <8, 8, float_4> b_harmonicq[10] = {};
+	sineOsc <8, 8, float_4> b_harmonic[6] = {};
+	sineOsc <8, 8, float_4> b_harmonicq[6] = {};
 
 	int panelTheme;
 
@@ -300,7 +299,7 @@ struct DAOSC : Module {
 	}
 
 
-	for (int i =0; i < 10; i++)
+	for (int i =0; i < 6; i++)
 	{
 
 		a_harmonic[i].freq=(((i+1)*2) * osc_a->freq);
