@@ -1,8 +1,16 @@
 #include "plugin.hpp"
 
+#if defined(METAMODULE_BUILTIN)
+extern Plugin *pluginInstance;
+#else
 Plugin *pluginInstance;
+#endif
 
+#if defined(METAMODULE_BUILTIN)
+void init_dBiz(rack::Plugin *p)
+#else
 void init(rack::Plugin *p)
+#endif
 {
   pluginInstance = p;
 
@@ -13,7 +21,7 @@ void init(rack::Plugin *p)
   p->addModel(modelUtility);
   p->addModel(modelChord);
   p->addModel(modelBene);
-  p->addModel(modelBenePads);
+//   p->addModel(modelBenePads);
   p->addModel(modelPerfMixer);
   p->addModel(modelDrMix);
   p->addModel(modelPerfMixer4);

@@ -226,20 +226,20 @@ struct Remix : Module {
 
         lights[CH_LIGHT + i].setSmoothBrightness(fmaxf(0.0, inMults[i]),APP->engine->getSampleTime());
 
-        outputs[B_OUTPUT].value = outputs[B_OUTPUT].value + outputs[i].value;
+        outputs[B_OUTPUT].setVoltage(outputs[B_OUTPUT].getVoltage() + outputs[i].getVoltage());
 
         if (i <= 1)
         {
-            outputs[A_OUTPUT].value = outputs[A_OUTPUT].value + outputs[i].value;
+            outputs[A_OUTPUT].setVoltage(outputs[A_OUTPUT].getVoltage() + outputs[i].getVoltage());
         }
         else if (i >= 4)
         {
-            outputs[C_OUTPUT].value = outputs[C_OUTPUT].value + outputs[i].value;
+            outputs[C_OUTPUT].setVoltage(outputs[C_OUTPUT].getVoltage() + outputs[i].getVoltage());
         }
 
-    outputs[A_OUTPUT].value = crossfade(outputs[A_OUTPUT].value * params[LEVEL_PARAM].value, outputs[A_OUTPUT].value * params[LEVEL_PARAM].value*clamp(inputs[LEVEL_INPUT].value/10,0.0f,1.0f),params[CV_LEVEL_PARAM].value);
-    outputs[B_OUTPUT].value = crossfade(outputs[B_OUTPUT].value * params[LEVEL_PARAM].value, outputs[B_OUTPUT].value * params[LEVEL_PARAM].value*clamp(inputs[LEVEL_INPUT].value/10,0.0f,1.0f),params[CV_LEVEL_PARAM].value);
-    outputs[C_OUTPUT].value = crossfade(outputs[C_OUTPUT].value * params[LEVEL_PARAM].value, outputs[C_OUTPUT].value * params[LEVEL_PARAM].value*clamp(inputs[LEVEL_INPUT].value/10,0.0f,1.0f),params[CV_LEVEL_PARAM].value);
+    outputs[A_OUTPUT].setVoltage(crossfade(outputs[A_OUTPUT].getVoltage() * params[LEVEL_PARAM].value, outputs[A_OUTPUT].getVoltage() * params[LEVEL_PARAM].value*clamp(inputs[LEVEL_INPUT].getVoltage()/10,0.0f,1.0f),params[CV_LEVEL_PARAM].value));
+    outputs[B_OUTPUT].setVoltage(crossfade(outputs[B_OUTPUT].getVoltage() * params[LEVEL_PARAM].value, outputs[B_OUTPUT].getVoltage() * params[LEVEL_PARAM].value*clamp(inputs[LEVEL_INPUT].getVoltage()/10,0.0f,1.0f),params[CV_LEVEL_PARAM].value));
+    outputs[C_OUTPUT].setVoltage(crossfade(outputs[C_OUTPUT].getVoltage() * params[LEVEL_PARAM].value, outputs[C_OUTPUT].getVoltage() * params[LEVEL_PARAM].value*clamp(inputs[LEVEL_INPUT].getVoltage()/10,0.0f,1.0f),params[CV_LEVEL_PARAM].value));
     }
 }
 };

@@ -40,10 +40,10 @@ struct Oscillator
 
 	dsp::TRCFilter<T> sqrFilter;
 
-	dsp::MinBlepGenerator<QUALITY, OVERSAMPLE, T> sqrMinBlep;
-	dsp::MinBlepGenerator<QUALITY, OVERSAMPLE, T> sawMinBlep;
-	dsp::MinBlepGenerator<QUALITY, OVERSAMPLE, T> triMinBlep;
-	dsp::MinBlepGenerator<QUALITY, OVERSAMPLE, T> sinMinBlep;
+	dsp::MinBlepGenerator<16, 16, simd::float_4> sqrMinBlep;
+	dsp::MinBlepGenerator<16, 16, simd::float_4> sawMinBlep;
+	dsp::MinBlepGenerator<16, 16, simd::float_4> triMinBlep;
+	dsp::MinBlepGenerator<16, 16, simd::float_4> sinMinBlep;
 
 	T sqrValue = 0.f;
 	T sawValue = 0.f;

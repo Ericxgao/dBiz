@@ -329,11 +329,11 @@ void TROSCMK2::onSampleRateChange()
 	input [i] = 0.2*out_a[i];
 
 	// Read fold cv control
-	foldLevel [i] = params[FOLD_PARAM+i].value + params[FOLD_ATT_PARAM+i].value*std::abs(inputs[FOLD_CV_INPUT+i].value);
+	foldLevel [i] = params[FOLD_PARAM+i].value + params[FOLD_ATT_PARAM+i].value*std::abs(inputs[FOLD_CV_INPUT+i].getVoltage());
 	foldLevel [i] = clamp(foldLevel[i], -10.0f, 10.0f);
 
 	// Read symmetry cv control
-	symmLevel[i] = params[SYMM_PARAM+i].value + 0.5f*params[SYMM_ATT_PARAM+i].value*inputs[SYMM_CV_INPUT+i].value;
+	symmLevel[i] = params[SYMM_PARAM+i].value + 0.5f*params[SYMM_ATT_PARAM+i].value*inputs[SYMM_CV_INPUT+i].getVoltage();
 	symmLevel[i] = clamp(symmLevel[i], -5.0f, 5.0f);
 
 	// Implement wavefolders

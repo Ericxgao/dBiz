@@ -280,8 +280,8 @@ struct Bene : Module {
 
    float closestVoltageInScale(float voltsIn)
    {
-    rootNote = params[ROOT_NOTE_PARAM].value + rescale(inputs[ROOT_NOTE_INPUT].value, 0,10,0, Bene::NUM_NOTES - 1);
-    curScaleVal =params[SCALE_PARAM].value + rescale(inputs[SCALE_INPUT].value, 0,10,0, Bene::NUM_SCALES - 1);
+    rootNote = params[ROOT_NOTE_PARAM].value + rescale(inputs[ROOT_NOTE_INPUT].getVoltage(), 0,10,0, Bene::NUM_NOTES - 1);
+    curScaleVal =params[SCALE_PARAM].value + rescale(inputs[SCALE_INPUT].getVoltage(), 0,10,0, Bene::NUM_SCALES - 1);
     int *curScaleArr;
     int notesInScale = 0;
     switch (curScaleVal)
@@ -437,7 +437,7 @@ struct Bene : Module {
 
     if (inputs[Y_CLK].isConnected())
     {
-			if (rightTrigger.process(inputs[Y_CLK].value))
+			if (rightTrigger.process(inputs[Y_CLK].getVoltage()))
       {
         if(xdir) step_up = true;
         else step_down = true;
@@ -446,7 +446,7 @@ struct Bene : Module {
 
     if (inputs[X_CLK].isConnected())
     {
-			if (leftTrigger.process(inputs[X_CLK].value))
+			if (leftTrigger.process(inputs[X_CLK].getVoltage()))
       {
         if(xdir) step_left = true;
         else step_right = true;
@@ -455,7 +455,7 @@ struct Bene : Module {
 
    /////////// resets
 
-    if (x_resetTrigger.process(inputs[X_RESET].value))
+    if (x_resetTrigger.process(inputs[X_RESET].getVoltage()))
     {
       lights[GRID_LIGHTS + x_position + y_position*4].value=0;
 		  x_position = 0;
@@ -465,7 +465,7 @@ struct Bene : Module {
       step_up = false;
       step_down = false;
 	  }
-    if (y_resetTrigger.process(inputs[Y_RESET].value))
+    if (y_resetTrigger.process(inputs[Y_RESET].getVoltage()))
     {
       lights[GRID_LIGHTS + x_position + y_position*4].value=0;
 		  y_position = 0;
@@ -575,8 +575,8 @@ struct Bene : Module {
     row_outs[i] = closestVoltageInScale(params[KNOB_PARAM + y_position * 4 + i].value);
     column_outs[i] = closestVoltageInScale(params[KNOB_PARAM + x_position + i * 4].value);
 
-    outputs[ROW_OUT + i].value = row_outs[i];
-    outputs[COLUMN_OUT + i].value = column_outs[i];
+    outputs[ROW_OUT + i].setVoltage(row_outs[i]);
+    outputs[COLUMN_OUT + i].setVoltage(column_outs[i]);
   }
   
   outputs[QUANT_OUT].setVoltage(quant_out);
@@ -716,7 +716,11 @@ struct BeneDisplay : TransparentWidget{
     }
   }
 
+  #ifndef METAMODULE
   void draw(NVGcontext *vg) override
+  #else
+  void draw(NVGcontext *vg)
+  #endif
   {
     if (++frame >= 4)
     {

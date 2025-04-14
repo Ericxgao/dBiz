@@ -59,8 +59,8 @@ struct subBank
 
     dsp::TRCFilter<T> sqrFilter;
 
-	dsp::MinBlepGenerator<QUALITY, OVERSAMPLE, T> sqrMinBlep;
-	dsp::MinBlepGenerator<QUALITY, OVERSAMPLE, T> sawMinBlep;
+	dsp::MinBlepGenerator<16, 16, simd::float_4> sqrMinBlep;
+	dsp::MinBlepGenerator<16, 16, simd::float_4> sawMinBlep;
 
 	T sqrValue = 0.f;
 	T sawValue = 0.f;

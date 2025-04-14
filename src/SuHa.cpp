@@ -57,7 +57,7 @@ struct subBank
 	T pulseWidth = 0.5f;
 	T syncDirection = 1.f;
 
-	dsp::MinBlepGenerator<QUALITY, OVERSAMPLE, T> sawMinBlep;
+	dsp::MinBlepGenerator<16, 16, simd::float_4> sawMinBlep;
 
 	T sawValue = 0.f;
 

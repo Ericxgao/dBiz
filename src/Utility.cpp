@@ -397,7 +397,11 @@ struct UtilityDisplay : TransparentWidget
     }
   }
 
+  #ifndef METAMODULE
   void draw(NVGcontext *vg) override
+  #else
+  void draw(NVGcontext *vg)
+  #endif
   {
     if (++frame >= 4)
     {

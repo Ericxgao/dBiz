@@ -142,8 +142,10 @@ struct VAKnob : app::SVGKnob
 	DKnob()
 	{
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/DKnob.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/DKnob-bg.svg")));
 		fg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/DKnob-cap.svg")));
+		#endif
 	}
 };
 
@@ -152,8 +154,10 @@ struct SDKnob : VAKnob
 	SDKnob()
 	{
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/SDKnob.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/SDKnob-bg.svg")));
 		fg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/SDKnob-cap.svg")));
+		#endif
 	}
 };
 
@@ -188,7 +192,9 @@ struct VerboR : VerboLarge
 		maxAngle = 0.83 * M_PI;
 
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboL.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboR-bg.svg")));
+		#endif
 	}
 };
 
@@ -200,7 +206,9 @@ struct VerboL : VerboLarge
 		maxAngle = 0.83 * M_PI;
 
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboL.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboL-bg.svg")));
+		#endif
 	}
 };
 
@@ -212,7 +220,9 @@ struct VerboDL : VerboLarge
 		maxAngle = 0.83 * M_PI;
 
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboL.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboDL.svg")));
+		#endif
 	}
 };
 
@@ -240,8 +250,10 @@ struct VerboDS : VerboSmall
 	{
 
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboDS.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboDS-bg.svg")));
 		fg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboDS-cap.svg")));
+		#endif
 	}
 };
 
@@ -251,8 +263,10 @@ struct VerboRS : VerboSmall
 	{
 
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboRS.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboDS-bg.svg")));
 		fg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboRS-cap.svg")));
+		#endif
 	}
 };
 
@@ -270,8 +284,10 @@ struct VerboS : VerboSmall
 	VerboS()
 	{
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboS.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboS-bg.svg")));
 		fg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboS-cap.svg")));
+		#endif
 	}
 };
 
@@ -292,8 +308,10 @@ struct VerboXS : app::SVGKnob
 		fb->addChildAbove(fg, tw);
 
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboXS.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboXS-bg.svg")));
 		fg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/VerboXS-cap.svg")));
+		#endif
 	}
 };
 
@@ -336,8 +354,10 @@ struct MicroBlu : SmallKnob
 	MicroBlu()
 	{
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/SmallBlu.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/Small-bg.svg")));
 		fg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/SmallBlu-cap.svg")));
+		#endif
 	}
 };
 
@@ -388,8 +408,9 @@ struct RoundAzz : DaviesKnob
 	RoundAzz()
 	{
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/Round.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/RoundAzz-bg.svg")));
-		
+		#endif
 	}
 };
 struct RoundRed : DaviesKnob
@@ -397,7 +418,9 @@ struct RoundRed : DaviesKnob
 	RoundRed()
 	{
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/Round.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/RoundRed-bg.svg")));
+		#endif
 	}
 };
 
@@ -406,7 +429,9 @@ struct RoundWhy : DaviesKnob
 	RoundWhy()
 	{
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/RoundWhite.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/RoundWhite-bg.svg")));
+		#endif
 	}
 };
 
@@ -423,7 +448,9 @@ struct LRoundWhy : RoundWhy
 	LRoundWhy()
 	{
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/LRoundWhite.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/LRoundWhite-bg.svg")));
+		#endif
 	}
 };
 struct HRoundWhy : SmallKnob
@@ -432,8 +459,10 @@ struct HRoundWhy : SmallKnob
 	{
 
 		setSvg(Svg::load(asset::plugin(pluginInstance, "res/component/HRoundWhite.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance, "res/component/HRoundWhite-bg.svg")));
 		fg->setSvg(Svg::load(asset::plugin(pluginInstance, "res/component/HRoundWhite-fg.svg")));
+		#endif
 	}
 };
 
@@ -458,8 +487,10 @@ struct FlatA : SmallKnob
 	FlatA()
 	{
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/FlatA.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/FlatA-bg.svg")));
 		fg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/Flat-cap.svg")));
+		#endif
 	}
 };
 struct FlatASnap : FlatA
@@ -476,8 +507,10 @@ struct FlatR : SmallKnob
 	FlatR()
 	{
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/FlatR.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/FlatR-bg.svg")));
 		fg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/Flat-cap.svg")));
+		#endif
 	}
 };
 
@@ -486,8 +519,10 @@ struct FlatG : SmallKnob
 	FlatG()
 	{
 		setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/FlatG.svg")));
+		#ifndef METAMODULE
 		bg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/FlatG-bg.svg")));
 		fg->setSvg(Svg::load(asset::plugin(pluginInstance,"res/component/Flat-cap.svg")));
+		#endif
 	}
 };
 

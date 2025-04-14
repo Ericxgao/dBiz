@@ -40,7 +40,7 @@ struct sineOsc {
 
 	dsp::TRCFilter<T> sqrFilter;
 
-	dsp::MinBlepGenerator<QUALITY, OVERSAMPLE, T> sinMinBlep;
+	dsp::MinBlepGenerator<16, 16, simd::float_4> sinMinBlep;
 
 	T sinValue = 0.f;
 
