@@ -125,6 +125,10 @@ struct Remix : Module {
 
     }
 
+    ~Remix() {
+        // Destructor to ensure proper cleanup when module is removed
+    }
+
       json_t *dataToJson() override {
         json_t *rootJ = json_object();
 
@@ -222,24 +226,24 @@ struct Remix : Module {
 
     for (int i = 0; i < 6; i++)
     {
-        outputs[i].setVoltage(ins[i] * inMults[i]);
+        outs[i] = ins[i] * inMults[i];
 
         lights[CH_LIGHT + i].setSmoothBrightness(fmaxf(0.0, inMults[i]),APP->engine->getSampleTime());
 
-        outputs[B_OUTPUT].setVoltage(outputs[B_OUTPUT].getVoltage() + outputs[i].getVoltage());
+        outputs[B_OUTPUT].setVoltage(outputs[B_OUTPUT].getVoltage() + outs[i]);
 
         if (i <= 1)
         {
-            outputs[A_OUTPUT].setVoltage(outputs[A_OUTPUT].getVoltage() + outputs[i].getVoltage());
+            outputs[A_OUTPUT].setVoltage(outputs[A_OUTPUT].getVoltage() + outs[i]);
         }
         else if (i >= 4)
         {
-            outputs[C_OUTPUT].setVoltage(outputs[C_OUTPUT].getVoltage() + outputs[i].getVoltage());
+            outputs[C_OUTPUT].setVoltage(outputs[C_OUTPUT].getVoltage() + outs[i]);
         }
 
-    outputs[A_OUTPUT].setVoltage(crossfade(outputs[A_OUTPUT].getVoltage() * params[LEVEL_PARAM].value, outputs[A_OUTPUT].getVoltage() * params[LEVEL_PARAM].value*clamp(inputs[LEVEL_INPUT].getVoltage()/10,0.0f,1.0f),params[CV_LEVEL_PARAM].value));
-    outputs[B_OUTPUT].setVoltage(crossfade(outputs[B_OUTPUT].getVoltage() * params[LEVEL_PARAM].value, outputs[B_OUTPUT].getVoltage() * params[LEVEL_PARAM].value*clamp(inputs[LEVEL_INPUT].getVoltage()/10,0.0f,1.0f),params[CV_LEVEL_PARAM].value));
-    outputs[C_OUTPUT].setVoltage(crossfade(outputs[C_OUTPUT].getVoltage() * params[LEVEL_PARAM].value, outputs[C_OUTPUT].getVoltage() * params[LEVEL_PARAM].value*clamp(inputs[LEVEL_INPUT].getVoltage()/10,0.0f,1.0f),params[CV_LEVEL_PARAM].value));
+    outputs[A_OUTPUT].setVoltage(crossfade(outputs[A_OUTPUT].getVoltage() * params[LEVEL_PARAM].getValue(), outputs[A_OUTPUT].getVoltage() * params[LEVEL_PARAM].getValue()*clamp(inputs[LEVEL_INPUT].getVoltage()/10,0.0f,1.0f),params[CV_LEVEL_PARAM].getValue()));
+    outputs[B_OUTPUT].setVoltage(crossfade(outputs[B_OUTPUT].getVoltage() * params[LEVEL_PARAM].getValue(), outputs[B_OUTPUT].getVoltage() * params[LEVEL_PARAM].getValue()*clamp(inputs[LEVEL_INPUT].getVoltage()/10,0.0f,1.0f),params[CV_LEVEL_PARAM].getValue()));
+    outputs[C_OUTPUT].setVoltage(crossfade(outputs[C_OUTPUT].getVoltage() * params[LEVEL_PARAM].getValue(), outputs[C_OUTPUT].getVoltage() * params[LEVEL_PARAM].getValue()*clamp(inputs[LEVEL_INPUT].getVoltage()/10,0.0f,1.0f),params[CV_LEVEL_PARAM].getValue()));
     }
 }
 };
