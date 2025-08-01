@@ -434,8 +434,8 @@ struct Verbo : Module {
 		NUM_LIGHTS
 	};
 
-	Oscillator<8, 8, float_4> oscillator[4];
-	sineOsc<8, 8, float_4> bank[8] = {};
+	Oscillator<8, 8, simd::float_4> oscillator[4];
+	sineOsc<8, 8, simd::float_4> bank[8] = {};
 
 
 
